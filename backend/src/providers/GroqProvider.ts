@@ -1,0 +1,86 @@
+import axios, { AxiosError } from 'axios';
+import { BaseAIProvider } from './AIProvider.js';
+import { PromptContext } from '../types/index.js';
+
+/**
+ * Groq AI provider implementation
+ * Uses Groq's fast inference API for code generation
+ */
+export class GroqProvider extends BaseAIProvider {
+  name = 'groq';
+  private apiKey: string;
+  private baseURL = 'https://api.groq.com/openai/v1';
+  private model = 'llama-3.3-70b-versatile'; // Fastest and most capable model
+
+  constructor(apiKey: string) {
+    super();
+    this.apiKey = apiKey;
+    console.log('Groq Provider initialized with API key:', apiKey ? `${apiKey.substring(0, 10)}...` : 'MISSING');
+  }
+
+  async generate(prompt: string, context: PromptContext): Promise<string> {
+    try {
+      const systemPrompt = this.buildSystemPrompt(context);
+      
+      const response = await axios.post(
+        `${this.baseURL}/chat/completions`,
+        {
+          model: this.model,
+          messages: [
+            { role: 'system', content: systemPrompt },
+            { role: 'user', content: prompt }
+          ],
+          temperature: 0.7, // Balanced for creative yet accurate advanced code
+          max_tokens: 8000, // Increased for complex, multi-file plugins
+          top_p: 0.95 // Higher for better quality and creativity
+        },
+        {
+          headers: {
+            'Authorization': `Bearer ${this.apiKey}`,
+            'Content-Type': 'application/json'
+          },
+          timeout: 45000 // Longer timeout for complex generation
+        }
+      );
+
+      const generatedText = response.data.choices[0].message.content;
+      return this.extractCode(generatedText);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const axiosError = error as AxiosError;
+        console.error('Groq API Error Details:', {
+          status: axiosError.response?.status,
+          statusText: axiosError.response?.statusText,
+          data: axiosError.response?.data,
+          code: axiosError.code
+        });
+        if (axiosError.response?.status === 429) {
+          throw new Error('Rate limit exceeded');
+        }
+        if (axiosError.response?.status === 401) {
+          throw new Error('Invalid API key');
+        }
+        if (axiosError.code === 'ECONNABORTED') {
+          throw new Error('Request timeout');
+        }
+      }
+      throw new Error(`Groq API error: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
+  }
+
+  async isAvailable(): Promise<boolean> {
+    try {
+      await axios.get(`${this.baseURL}/models`, {
+        headers: { 'Authorization': `Bearer ${this.apiKey}` },
+        timeout: 5000
+      });
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  private buildSystemPrompt(context: PromptContext): string {
+    return context.additionalContext;
+  }
+}

@@ -1,0 +1,273 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-gray-700;
+  }
+  
+  body {
+    @apply bg-[#1a1a1a] text-gray-100;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Minecraft font class - now uses default font */
+.minecraft-font {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  letter-spacing: 0.02em;
+}
+
+/* Minecraft button style */
+.minecraft-btn {
+  position: relative;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  transition: all 0.1s ease;
+}
+
+.minecraft-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.2);
+}
+
+.minecraft-btn:active {
+  transform: translateY(0px);
+  filter: brightness(0.9);
+}
+
+/* Minecraft panel/card style */
+.minecraft-panel {
+  background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
+  border: 3px solid #3a3a3a;
+  box-shadow: 
+    inset 2px 2px 0px rgba(255, 255, 255, 0.1),
+    inset -2px -2px 0px rgba(0, 0, 0, 0.5),
+    4px 4px 0px rgba(0, 0, 0, 0.3);
+  image-rendering: pixelated;
+}
+
+.minecraft-panel-hover {
+  transition: all 0.2s ease;
+}
+
+.minecraft-panel-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    inset 2px 2px 0px rgba(255, 255, 255, 0.1),
+    inset -2px -2px 0px rgba(0, 0, 0, 0.5),
+    6px 6px 0px rgba(0, 0, 0, 0.4);
+}
+
+/* Minecraft input style */
+.minecraft-input {
+  background: #1a1a1a;
+  border: 2px solid #3a3a3a;
+  box-shadow: 
+    inset 2px 2px 0px rgba(0, 0, 0, 0.5),
+    inset -2px -2px 0px rgba(255, 255, 255, 0.05);
+  font-family: 'Minecraft', monospace;
+  image-rendering: pixelated;
+}
+
+.minecraft-input:focus {
+  border-color: #55ff55;
+  box-shadow: 
+    inset 2px 2px 0px rgba(0, 0, 0, 0.5),
+    inset -2px -2px 0px rgba(255, 255, 255, 0.05),
+    0 0 10px rgba(85, 255, 85, 0.3);
+}
+
+/* Minecraft grass block pattern background */
+.minecraft-bg {
+  background-color: #1a1a1a;
+  background-image: 
+    repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(85, 255, 85, 0.02) 35px, rgba(85, 255, 85, 0.02) 70px),
+    repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(85, 255, 85, 0.02) 35px, rgba(85, 255, 85, 0.02) 70px);
+}
+
+/* Minecraft emerald color scheme */
+.minecraft-emerald {
+  background: linear-gradient(135deg, #50C878 0%, #2d7a4f 100%);
+  box-shadow: 
+    inset 2px 2px 0px rgba(255, 255, 255, 0.3),
+    inset -2px -2px 0px rgba(0, 0, 0, 0.5),
+    4px 4px 0px rgba(0, 0, 0, 0.3);
+}
+
+.minecraft-diamond {
+  background: linear-gradient(135deg, #5dade2 0%, #2874a6 100%);
+  box-shadow: 
+    inset 2px 2px 0px rgba(255, 255, 255, 0.3),
+    inset -2px -2px 0px rgba(0, 0, 0, 0.5),
+    4px 4px 0px rgba(0, 0, 0, 0.3);
+}
+
+.minecraft-gold {
+  background: linear-gradient(135deg, #f4d03f 0%, #d4af37 100%);
+  box-shadow: 
+    inset 2px 2px 0px rgba(255, 255, 255, 0.3),
+    inset -2px -2px 0px rgba(0, 0, 0, 0.5),
+    4px 4px 0px rgba(0, 0, 0, 0.3);
+}
+
+code {
+  font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+/* Scrollbar styling - Minecraft style */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border: 2px solid #3a3a3a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #50C878 0%, #2d7a4f 100%);
+  border: 2px solid #3a3a3a;
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #60D888 0%, #3d8a5f 100%);
+}
+
+/* Typing animation */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  50% { border-color: transparent }
+}
+
+.typing-cursor {
+  border-right: 3px solid #50C878;
+  animation: blink 1s step-end infinite;
+}
+
+/* Minecraft block pop animation */
+@keyframes blockPop {
+  0% { 
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% { 
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.block-pop {
+  animation: blockPop 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Minecraft item float animation */
+@keyframes itemFloat {
+  0%, 100% { 
+    transform: translateY(0px);
+  }
+  50% { 
+    transform: translateY(-10px);
+  }
+}
+
+.item-float {
+  animation: itemFloat 2s ease-in-out infinite;
+}
+
+/* Pixelated fade in */
+@keyframes pixelFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.pixel-fade-in {
+  animation: pixelFadeIn 0.3s ease-out;
+}
+
+/* Minecraft XP bar style */
+.xp-bar {
+  background: linear-gradient(to bottom, #7cfc00 0%, #32cd32 50%, #228b22 100%);
+  box-shadow: 
+    inset 0 2px 0px rgba(255, 255, 255, 0.4),
+    inset 0 -2px 0px rgba(0, 0, 0, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.5);
+  border: 2px solid #1a1a1a;
+}
+
+/* Minecraft health bar style */
+.health-bar {
+  background: linear-gradient(to bottom, #ff5555 0%, #cc0000 50%, #990000 100%);
+  box-shadow: 
+    inset 0 2px 0px rgba(255, 255, 255, 0.4),
+    inset 0 -2px 0px rgba(0, 0, 0, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.5);
+  border: 2px solid #1a1a1a;
+}
+
+/* Shine animation for progress bar */
+@keyframes shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+/* Glow effects for symbols */
+.glow-emerald {
+  color: #50C878;
+  text-shadow: 
+    0 0 10px rgba(80, 200, 120, 0.8),
+    0 0 20px rgba(80, 200, 120, 0.6),
+    0 0 30px rgba(80, 200, 120, 0.4);
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+.glow-diamond {
+  color: #5DADE2;
+  text-shadow: 
+    0 0 10px rgba(93, 173, 226, 0.8),
+    0 0 20px rgba(93, 173, 226, 0.6),
+    0 0 30px rgba(93, 173, 226, 0.4);
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+.glow-gold {
+  color: #F4D03F;
+  text-shadow: 
+    0 0 10px rgba(244, 208, 63, 0.8),
+    0 0 20px rgba(244, 208, 63, 0.6),
+    0 0 30px rgba(244, 208, 63, 0.4);
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.3);
+  }
+}

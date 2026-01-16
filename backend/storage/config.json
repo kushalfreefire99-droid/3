@@ -1,0 +1,10 @@
+{
+  "discordPluginWebhook": "",
+  "discordSkriptWebhook": "",
+  "discordConfigWebhook": "",
+  "subscriptionPrice": 299,
+  "subscriptionDurationDays": 30,
+  "publicSharingEnabled": true,
+  "freeDailyGenerations": 3,
+  "freeDailyBuilds": 10
+}
